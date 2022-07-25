@@ -11,4 +11,12 @@
     </ng-template>
 </h3>
 
-<h3>Carrier Rocket: {{ rocketName }}</h3>
+<h3>Carrier Rocket: 
+    <span *ngIf="!editingMission; else editMissionBlock1">
+        <span class="editable-text" (click)="editingMission = true;">{{ rocketName }}</span>
+    </span>
+    <ng-template #editMissionBlock1>
+        <input #mission1 (keyup.enter)="updateRocket(mission1.value)" value="{{ rocketName }}"/>
+        <button (click)="updateRocket(mission1.value)">save</button>
+    </ng-template>
+</h3>
